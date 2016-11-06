@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dom和jQuery对象的转换</title>
+    <script src="./scripts/jquery-3.1.1.js" type="text/javascript"></script>
+    <script>
+        /*
+        var $cr = $("#cr");
+        var cr = $cr;
+        alert(cr.checked);
+
+        var $cr = $("#cr");
+        var cr = $cr.get(0);
+        alert(cr.checked);
+
+        var cr = document.getElementById("cr");
+        var $cr = $(cr);
+        */
+    $(document).ready(function(){
+        var $cr = $("#cr");
+        /*dom方法
+        var cr = $cr[0];
+        $cr.click(function(){
+          if(cr.checked){ //dom的判断方法
+              alert("感谢你的支持！你可以继续操作。");
+          }
+        })*/
+        //jQuery方法
+        $cr.click(function(){
+            if($cr.is(":checked")){
+                alert("感谢你的支持！你可以继续操作。");
+            }
+        })
+    });
+    </script>
+</head>
+<body>
+<input type="checkbox" id="cr"/><label for="cr">我已经阅读了上面制度.</label>
+</body>
+</html>

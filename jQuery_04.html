@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery与其他库的冲突问题</title>
+    <script src="./scripts/jquery-3.1.1.js"></script>
+    <script src="./scripts/prototype.js"></script>
+    <script>
+       //1.jQuery库在其他库之后导入
+       /*方法一 将$控制权交给
+    jQuery.noConflict();  //蒋$控制权交给prototype.js
+        jQuery(function(){
+            jQuery(function(){
+                jQuery("p").click(function(){
+                    alert(jQuery(this).text());
+                })
+            })
+        })
+        $("pp").style.display = 'none'; //使用prototype.js隐藏元素
+        */
+        /*方法二 自定义一个备用名称$j符号代替$符号
+        var $j = jQuery.noConflict();
+        $j(function(){
+            $j("p").click(function(){
+                alert($j(this).text());
+            })
+        })
+       $("pp").style.display = 'none'; //使用prototype.js隐藏元素
+         */
+        /*方法三 直接在函数当中传入$符合作为参数
+        jQuery.noConflict();
+        jQuery(function($){
+            $("p").click(function(){
+                alert($(this).text());
+            })
+        })
+       $("pp").style.display = 'none'; //使用prototype.js隐藏元素
+         */
+        /*方法三 定义匿名函数并设置形参为$ 函数形式有点模糊
+        jQuery.noConflict();
+       (function($){
+          $(function(){
+              $("p").click(function(){
+                  alert($(this).text());
+              });
+          });
+       })(jQuery);
+       $("pp").style.display = 'none'; //使用prototype.js隐藏元素
+         */
+        //2.jQuery在其他库之前导入
+        jQuery(function(){
+            jQuery("p").click(function(){
+                alert(jQuery(this).text());
+            });
+        })
+       $("pp").style.display = 'none'; //使用prototype.js隐藏元素
+    </script>
+</head>
+<body>
+    <p id="pp">Test-Prototype(用Prototype库隐藏事件)</p>
+    <p>Test-jQuery(用jQuery绑定单击事件)</p>
+</body>
+</html>

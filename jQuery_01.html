@@ -2,12 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>文本加载对象dom</title>
     <script src="./scripts/jquery-3.1.1.js" type="text/javascript"></script>
     <script>
         $(document).ready(function(){
             alert("Hello World !");
         });
+        /*
+         这里于document.onload = function(){}的不同在于
+         1.可以简化为$(function(){.....})
+         2.可以重复使用多次
+         3.不是等网页所有内容加载完毕后才加载格式DOM结构执行完后就加载
+         */
     </script>
 </head>
 <body>
